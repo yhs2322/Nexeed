@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>넥시드컨설팅 (NEXEED CONSULTING) - 조직의 오늘에 미래를 심다</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Noto Sans KR -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            deep: '#1e0b36',      /* 딥퍼플 */
+                            primary: '#5d3fd3',   /* 일렉트릭퍼플 */
+                            secondary: '#3b82f6', /* 로얄블루 */
+                            accent: '#a855f7',    /* 라벤더 */
+                            teal: '#14b8a6',      /* 에메랄드 테일 */
+                            dark: '#0f172a',      /* 다크그레이 */
+                            light: '#f8fafc'      /* 라이트그레이 */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #14b8a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e0b36 0%, #0f172a 100%);
+        }
+        .card-glow:hover {
+            box-shadow: 0 10px 30px -10px rgba(93, 63, 211, 0.3);
+            border-color: rgba(168, 85, 247, 0.4);
+            transform: translateY(-4px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a855f7;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 font-sans antialiased overflow-x-hidden">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-header transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-primary to-brand-teal flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                    <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-wider text-white">NEXEED</span>
+                    <span class="text-xs block text-brand-teal font-medium tracking-widest -mt-1">CONSULTING</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">회사소개</a>
+                <a href="#services" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">사업영역</a>
+                <a href="#calculator" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">실시간 견적기</a>
+                <a href="#portfolio" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">포트폴리오</a>
+                <a href="#contact" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">문의처</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#calculator" class="bg-gradient-to-r from-brand-primary to-brand-secondary text-white text-sm font-semibold px-5 h-10 flex items-center justify-center rounded-full hover:shadow-lg hover:shadow-brand-primary/30 transition-all transform hover:-translate-y-0.5">
+                    간편 견적 요청
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-slate-300 hover:text-white focus:outline-none" id="mobileMenuBtn">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </</button>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div class="hidden md:hidden bg-brand-deep border-t border-slate-800 px-4 pt-2 pb-6 space-y-3" id="mobileMenu">
+            <a href="#about" class="block py-2 px-3 text-base font-medium text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white" onclick="toggleMenu()">회사소개</a>
+            <a href="#services" class="block py-2 px-3 text-base font-medium text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white" onclick="toggleMenu()">사업영역</a>
+            <a href="#calculator" class="block py-2 px-3 text-base font-medium text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white" onclick="toggleMenu()">실시간 견적기</a>
+            <a href="#portfolio" class="block py-2 px-3 text-base font-medium text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white" onclick="toggleMenu()">포트폴리오</a>
+            <a href="#contact" class="block py-2 px-3 text-base font-medium text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white" onclick="toggleMenu()">문의처</a>
+            <a href="#calculator" class="block w-full text-center bg-gradient-to-r from-brand-primary to-brand-secondary text-white font-semibold py-3 rounded-lg hover:shadow-md" onclick="toggleMenu()">간편 견적 요청</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden gradient-bg">
+        <!-- Background Overlay / Decorative Lights -->
+        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary rounded-full filter blur-[120px] animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-teal rounded-full filter blur-[120px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Left: Hero Texts -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center space-x-2 bg-slate-800/60 border border-slate-700 rounded-full px-4 py-1.5 text-xs text-brand-teal font-semibold tracking-wider uppercase">
+                    <span class="flex h-2 w-2 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-teal"></span>
+                    </span>
+                    <span>Professional HRD Partner</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-white">
+                    조직의 오늘에<br>
+                    <span class="gradient-text">미래를 심다</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-300 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                    교육·행사·콘텐츠로 조직의 혁신적 성장을 설계하는 NO.1 HRD 파트너 <strong>넥시드컨설팅</strong>입니다. 맞춤 기획부터 실시간 사후 운영까지 완벽한 원스톱 솔루션을 경험하세요.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#services" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-accent hover:to-brand-primary text-white font-bold rounded-xl shadow-lg shadow-brand-primary/20 hover:shadow-brand-accent/40 transition-all text-center transform hover:-translate-y-1">
+                        비즈니스 영역 탐색
+                    </a>
+                    <a href="#calculator" class="w-full sm:w-auto px-8 py-4 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-slate-100 font-bold rounded-xl transition-all text-center transform hover:-translate-y-1">
+                        실시간 간편 견적 산출
+                    </a>
+                </div>
+                <!-- Core Achievements Badges -->
+                <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800 max-w-md mx-auto lg:mx-0">
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-extrabold text-white">100%</div>
+                        <div class="text-xs text-slate-400 mt-1">고객 맞춤형 설계</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-extrabold text-brand-teal">24H</div>
+                        <div class="text-xs text-slate-400 mt-1">이내 견적 및 피드백</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-extrabold text-brand-secondary">One-Stop</div>
+                        <div class="text-xs text-slate-400 mt-1">기획-운영-인쇄 지원</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Hero Visual (Representative SVG / Concept Art) -->
+            <div class="lg:col-span-5 flex justify-center relative">
+                <div class="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden bg-slate-900/60 border border-slate-800 shadow-2xl p-6 flex flex-col justify-between">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-primary/10 to-transparent pointer-events-none"></div>
+                    <!-- Brand Top Area -->
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-brand-teal tracking-widest">NEXEED SERVICE MANUAL</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-accent"></span>
+                    </div>
+
+                    <!-- Flow Concept Visual -->
+                    <div class="my-auto space-y-4 py-6">
+                        <!-- Step 1 -->
+                        <div class="flex items-center space-x-4 bg-slate-800/40 border border-slate-700/60 p-3 rounded-xl transform hover:scale-102 transition-all">
+                            <div class="w-10 h-10 rounded-lg bg-brand-primary/20 text-brand-accent flex items-center justify-center">
+                                <i class="fa-solid d-block fa-seedling"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">진단 및 설계 (심고)</h4>
+                                <p class="text-xs text-slate-400">조직 맞춤 정밀 분석 & 기획</p>
+                            </div>
+                        </div>
+                        <!-- Connection Line -->
+                        <div class="w-0.5 h-4 bg-gradient-to-b from-brand-primary to-brand-secondary ml-8"></div>
+                        <!-- Step 2 -->
+                        <div class="flex items-center space-x-4 bg-slate-800/40 border border-slate-700/60 p-3 rounded-xl transform hover:scale-102 transition-all">
+                            <div class="w-10 h-10 rounded-lg bg-brand-secondary/20 text-brand-secondary flex items-center justify-center">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">실행 및 교육 (키우고)</h4>
+                                <p class="text-xs text-slate-400">임원·공무원·재직자 맞춤 솔루션</p>
+                            </div>
+                        </div>
+                        <!-- Connection Line -->
+                        <div class="w-0.5 h-4 bg-gradient-to-b from-brand-secondary to-brand-teal ml-8"></div>
+                        <!-- Step 3 -->
+                        <div class="flex items-center space-x-4 bg-slate-800/40 border border-slate-700/60 p-3 rounded-xl transform hover:scale-102 transition-all">
+                            <div class="w-10 h-10 rounded-lg bg-brand-teal/20 text-brand-teal flex items-center justify-center">
+                                <i class="fa-solid fa-file-invoice"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">결과 및 보장 (남깁니다)</h4>
+                                <p class="text-xs text-slate-400">교안 디자인·스케치 영상·아카이빙</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brand Footer Info -->
+                    <div class="border-t border-slate-800 pt-3 flex justify-between items-center">
+                        <span class="text-xs text-slate-400">Nexeed One-Stop Process</span>
+                        <a href="#calculator" class="text-xs font-bold text-brand-accent hover:text-white transition-colors flex items-center gap-1">
+                            실시간 견적 내기 <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem & Challenge Section -->
+    <section class="py-24 bg-slate-950 relative border-t border-slate-900" id="about">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <span class="text-brand-accent text-sm font-bold tracking-widest uppercase">The Challenges</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">
+                    조직은 지금 어떤 고민을 하고 계신가요?
+                </h2>
+                <p class="text-slate-400">
+                    빠른 환경 변화와 다양해진 인적 구성 속에서 비즈니스 성장을 위한 해답은 정교한 설계에 있습니다.
+                </p>
+            </div>
+
+            <!-- Problem Grid (4 items from source) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Pain Point 1 -->
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl relative overflow-hidden group hover:border-brand-primary/40 transition-all">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-primary/5 rounded-full -mr-8 -mt-8"></div>
+                    <span class="text-3xl font-extrabold text-brand-primary/30">01</span>
+                    <h3 class="text-lg font-bold text-white mt-4 mb-2">행사 중심의 한계</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        화려한 일회성 행사는 많지만 조직 내에 오랫동안 보존되고 작동하는 핵심 메시지가 결여되어 있습니다.
+                    </p>
+                </div>
+                <!-- Pain Point 2 -->
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl relative overflow-hidden group hover:border-brand-secondary/40 transition-all">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-secondary/5 rounded-full -mr-8 -mt-8"></div>
+                    <span class="text-3xl font-extrabold text-brand-secondary/30">02</span>
+                    <h3 class="text-lg font-bold text-white mt-4 mb-2">형식적인 리더십 교육</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        리더들을 지속해서 교육하지만 정작 실무 현장 속에서 역동적으로 작동하는 리더십은 여전히 부족합니다.
+                    </p>
+                </div>
+                <!-- Pain Point 3 -->
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl relative overflow-hidden group hover:border-brand-teal/40 transition-all">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-teal/5 rounded-full -mr-8 -mt-8"></div>
+                    <span class="text-3xl font-extrabold text-brand-teal/30">03</span>
+                    <h3 class="text-lg font-bold text-white mt-4 mb-2">분절된 실행 구조</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        교육 따로, 콘텐츠 기획 따로, 행사 대행 따로 추진되다 보니 상호 시너지가 발생하지 않고 중복 비용이 듭니다.
+                    </p>
+                </div>
+                <!-- Pain Point 4 -->
+                <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl relative overflow-hidden group hover:border-brand-accent/40 transition-all">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-accent/5 rounded-full -mr-8 -mt-8"></div>
+                    <span class="text-3xl font-extrabold text-brand-accent/30">04</span>
+                    <h3 class="text-lg font-bold text-white mt-4 mb-2">변화 대응의 부진</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        시장은 급변하는데 기존 교육 시스템은 수년째 정체되어 실질적인 조직의 발전을 주도하기 어렵습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Approach Section (심고, 키우고, 남깁니다) -->
+    <section class="py-24 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Details -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-brand-teal text-sm font-bold tracking-widest uppercase">NEXEED PHILOSOPHY</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-white leading-tight">
+                        Nexeed는 성장의<br>
+                        사이클을 <span class="text-brand-accent">완성합니다</span>
+                    </h2>
+                    <p class="text-slate-300 font-light leading-relaxed">
+                        넥시드컨설팅은 단순 지식 전달에 그치는 일방통행식 위탁 교육을 지양합니다. 조직에 가치와 성장의 씨앗을 <strong class="text-white">심고</strong>, 행동 변화로 <strong class="text-white">키우며</strong>, 영상과 책자 등의 영구적인 기록으로 확실히 <strong class="text-white">남기는</strong> 체계적인 사이클을 가동합니다.
+                    </p>
+                    <div class="border-l-4 border-brand-teal pl-4 py-2 space-y-1">
+                        <div class="text-sm font-bold text-white">"지금의 성장이, 조직의 위대한 내일이 되도록"</div>
+                        <div class="text-xs text-slate-400">넥시드컨설팅 임직원 일동</div>
+                    </div>
+                </div>
+
+                <!-- Right Step Visual Grid -->
+                <div class="lg:col-span-7 space-y-6">
+                    <!-- Step Cards -->
+                    <!-- Step 1 -->
+                    <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl flex items-start space-x-5 hover:border-brand-primary/30 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-brand-primary/20 flex-shrink-0 flex items-center justify-center text-brand-accent text-xl font-black">
+                            1
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-1">진단 및 설계 (Diagnosis & Design)</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                기업/기관의 본질적 애로사항 파악 및 맞춤 분석. 직무, 대상, 특성을 전방위로 고려하여 전수 맞춤형 커리큘럼을 즉시 설계합니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl flex items-start space-x-5 hover:border-brand-secondary/30 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-brand-secondary/20 flex-shrink-0 flex items-center justify-center text-brand-secondary text-xl font-black">
+                            2
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-1">통합 실행 및 운영 (Execution)</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                검증된 최고의 교육 퍼실리테이터와 전문 MC, 다과 서비스가 한 팀으로 긴밀하게 움직여 완벽한 행사이자 배움의 순간을 실행합니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-slate-900/40 border border-slate-800 p-6 rounded-2xl flex items-start space-x-5 hover:border-brand-teal/30 transition-all">
+                        <div class="w-12 h-12 rounded-xl bg-brand-teal/20 flex-shrink-0 flex items-center justify-center text-brand-teal text-xl font-black">
+                            3
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white mb-1">성과 고착화 & 영구 기록 (Archiving)</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                교육이나 행사의 열기를 현장까지 지속할 수 있도록 스케치 영상 제작, 맞춤 교보재 패키징, 프리미엄 PPT 교안 리디자인을 원스톱 제공합니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Showcase with Codes & Transparant Pricing -->
+    <section class="py-24 bg-slate-950 border-t border-slate-900" id="services">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
+                <div class="space-y-4">
+                    <span class="text-brand-secondary text-sm font-bold tracking-widest uppercase">Service Manual & Price</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-white">
+                        원스톱 HRD 서비스 영역
+                    </h2>
+                    <p class="text-slate-400">
+                        기획부터 운영, 실시간 보조 지원과 제작까지 일원화된 투명한 맞춤 단가표를 선공개합니다.
+                    </p>
+                </div>
+                <!-- Categories Filtering Indicator -->
+                <div class="text-sm text-brand-teal bg-brand-teal/10 border border-brand-teal/30 px-4 py-2 rounded-xl font-medium">
+                    <i class="fa-solid fa-calculator mr-2"></i>클릭 시, 견적 장바구니에 즉시 담깁니다
+                </div>
+            </div>
+
+            <!-- Service Category 01: 교육 운영 및 콘텐츠 -->
+            <div class="mb-16">
+                <div class="flex items-center space-x-3 mb-8 border-b border-slate-800 pb-4">
+                    <div class="w-3 h-6 bg-brand-primary rounded-full"></div>
+                    <h3 class="text-xl sm:text-2xl font-black text-white">교육 운영 및 교육 콘텐츠 분야</h3>
+                    <span class="text-xs bg-brand-primary/20 text-brand-accent px-2.5 py-1 rounded-full font-bold">AREA 01</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Service CODE 01 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between card-glow transition-all relative">
+                        <span class="absolute top-6 right-6 text-xs text-brand-teal font-extrabold bg-slate-800 px-2.5 py-1 rounded-full">CODE 01</span>
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-accent mb-4 text-lg">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2">교육 진행</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                                임원·공직자 강의, 고밀도 워크숍, 팀빌딩, 소통 퍼실리테이션 등 맞춤 커리큘럼 기반 실제 교육 운영
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-800 pt-4 flex items-center justify-between">
+                            <div>
+                                <div class="text-xs text-slate-500">단가 (1회 기준)</div>
+                                <div class="text-lg font-black text-white">25만원 <span class="text-xs text-slate-400 font-light">부터</span></div>
+                            </div>
+                            <button onclick="addToEstimate('CODE 01', '교육 진행', 25, '회')" class="bg-brand-primary hover:bg-brand-accent text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
+                                <i class="fa-solid fa-plus mr-1"></i> 담기
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service CODE 02 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between card-glow transition-all relative">
+                        <span class="absolute top-6 right-6 text-xs text-brand-teal font-extrabold bg-slate-800 px-2.5 py-1 rounded-full">CODE 02</span>
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-brand-secondary/10 flex items-center justify-center text-brand-secondary mb-4 text-lg">
+                                <i class="fa-solid fa-microphone"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2">행사 사회 (MC)</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                                개회식, 성과공유회, 포럼 등 기업 행사의 품격을 높이고 밀도 높은 소통을 조율하는 전문 진행자 매칭
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-800 pt-4 flex items-center justify-between">
+                            <div>
+                                <div class="text-xs text-slate-500">단가 (1회 기준)</div>
+                                <div class="text-lg font-black text-white">30만원 <span class="text-xs text-slate-400 font-light">부터</span></div>
+                            </div>
+                            <button onclick="addToEstimate('CODE 02', '행사 사회 (MC)', 30, '회')" class="bg-brand-primary hover:bg-brand-accent text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
+                                <i class="fa-solid fa-plus mr-1"></i> 담기
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service CODE 03 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between card-glow transition-all relative">
+                        <span class="absolute top-6 right-6 text-xs text-brand-teal font-extrabold bg-slate-800 px-2.5 py-1 rounded-full">CODE 03</span>
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4 text-lg">
+                                <i class="fa-solid fa-face-smile"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2">팀빌딩 레크레이션</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                                신규 입직자, 부서 통합 등 소통 유도를 위한 밀도 높은 아이스브레이킹 게임 및 고도화된 팀 활동형 진행
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-800 pt-4 flex items-center justify-between">
+                            <div>
+                                <div class="text-xs text-slate-500">단가 (1회 기준)</div>
+                                <div class="text-lg font-black text-white">30만원 <span class="text-xs text-slate-400 font-light">부터</span></div>
+                            </div>
+                            <button onclick="addToEstimate('CODE 03', '팀빌딩 레크레이션', 30, '회')" class="bg-brand-primary hover:bg-brand-accent text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
+                                <i class="fa-solid fa-plus mr-1"></i> 담기
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service CODE 04 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between card-glow transition-all relative">
+                        <span class="absolute top-6 right-6 text-xs text-brand-teal font-extrabold bg-slate-800 px-2.5 py-1 rounded-full">CODE 04</span>
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-brand-teal/10 flex items-center justify-center text-brand-teal mb-4 text-lg">
+                                <i class="fa-solid fa-box-open"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2">교육 교보재 세트 구성</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                                활동지, 소통형 워크북, 맞춤형 카드 교구 및 기업 아이덴티티가 인쇄된 웰컴 교육 키트 소싱·제작
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-800 pt-4 flex items-center justify-between">
+                            <div>
+                                <div class="text-xs text-slate-500">단가 (기본 1세트당)</div>
+                                <div class="text-lg font-black text-white">5,000원 <span class="text-xs text-slate-400 font-light">부터</span></div>
+                            </div>
+                            <button onclick="addToEstimate('CODE 04', '교육 교보재 세트', 0.5, '세트')" class="bg-brand-primary hover:bg-brand-accent text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
+                                <i class="fa-solid fa-plus mr-1"></i> 담기
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service CODE 05 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between card-glow transition-all relative">
+                        <span class="absolute top-6 right-6 text-xs text-brand-teal font-extrabold bg-slate-800 px-2.5 py-1 rounded-full">CODE 05</span>
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 mb-4 text-lg">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2">책자/자료집 기획·편집</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                                교육 과정에 가장 어울리는 고품격 자료집 디자인 및 내용 체계화 편집 대행 (인쇄비 별도 산정)
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-800 pt-4 flex items-center justify-between">
+                            <div>
+                                <div class="text-xs text-slate-500">단가 (1페이지당)</div>
+                                <div class="text-lg font-black text-white">1만원 <span class="text-xs text-slate-400 font-light">부터</span></div>
+                            </div>
+                            <button onclick="addToEstimate('CODE 05', '책자/자료집 편집', 1, '페이지')" class="bg-brand-primary hover:bg-brand-accent text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
+                                <i class="fa-solid fa-plus mr-1"></i> 담기
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service CODE 06 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between card-glow transition-all relative">
+                        <span class="absolute top-6 right-6 text-xs text-brand-teal font-extrabold bg-slate-800 px-2.5 py-1 rounded-full">CODE 06</span>
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-400 mb-4 text-lg">
+                                <i class="fa-solid fa-file-powerpoint"></i>
+                            </div>
+                            <h4 class="text-lg font-bold text-white mb-2">교안(PPT) 전문 디자인</h4>
+                            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                                기존 사내 강의 원고 구조화, 키비주얼 기획, 시안 수정 2회 포함 고급 템플릿 맞춤 디자인 제작
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-800 pt-4 flex items-center justify-between">
+                            <div>
+                                <div class="text-xs text-slate-500">단가 (1페이지당)</div>
+                                <div class="text-lg font-black text-white">1만원 <span class="text-xs text-slate-400 font-light">부터</span></div>
+                            </div>
+                            <button onclick="addToEstimate('CODE 06', '교안 PPT 디자인', 1, '페이지')" class="bg-brand-primary hover:bg-brand-accent text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors">
+                                <i class="fa-solid fa-plus mr-1"></i> 담기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Category 02: 운영 및 행사 지원 -->
+            <div>
+                <div class="flex items-center space-x-3 mb-8 border-b border-slate-800 pb-4">
+                    <div class="w-3 h-6 bg-brand-teal rounded-full"></div>
+                    <h3 class="text-xl sm:text-2xl font-black text-white">교육/행사 현장 운영지원 및 기타 대행</h3>
+                    <span class="text-xs bg-brand-teal/20 text-brand-teal px-2.5 py-1 rounded-full font-bold">AREA 02</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Service CODE 07 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between card-glow transition-all relative">
+                        <span class="absolute top-6 right-6 text-xs text-brand-teal font-extrabold bg-slate-800 px-2.5 py-1 rounded-full">CODE 07</span>
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 mb-4 text-lg">
+                                <i class="fa-solid fa-mug-hot"></i>
+                            </div>
+                            <h4 class="text-base font-bold text-white mb-1">프리미엄 다과 대행</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                현장 Coffee Break 준비부터 소싱, 케이터링 세팅 및 청소까지 일괄 대행
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-800 pt-3 flex items-center justify-between">
+                            <div>
+                                <div class="text-[10px] text-slate-500">단가 (1인당)</div>
+                                <div class="text-base font-black text-white">5,000원~</div>
+                            </div>
+                            <button onclick="addToEstimate('CODE 07', '다과 대행 케이터링', 0.5, '인')" class="bg-brand-primary hover:bg-brand-accent text-white text-xs font-bold px-2 py-1.5 rounded-lg transition-colors">
+                                담기
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service CODE 08 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between card-glow transition-all relative">
+                        <span class="absolute top-6 right-6 text-xs text-brand-teal font-extrabold bg-slate-800 px-2.5 py-1 rounded-full">CODE 08</span>
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 mb-4 text-lg">
+                                <i class="fa-solid fa-video"></i>
+                            </div>
+                            <h4 class="text-base font-bold text-white mb-1">스케치/하이라이트 영상</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                현장의 활력을 기록하고 사내 성과 홍보용 3분 내외 편집본 원스톱 지원
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-800 pt-3 flex items-center justify-between">
+                            <div>
+                                <div class="text-[10px] text-slate-500">단가 (1편 기준)</div>
+                                <div class="text-base font-black text-white">15만원~</div>
+                            </div>
+                            <button onclick="addToEstimate('CODE 08', '스케치 영상 제작', 15, '편')" class="bg-brand-primary hover:bg-brand-accent text-white text-xs font-bold px-2 py-1.5 rounded-lg transition-colors">
+                                담기
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service CODE 09 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between card-glow transition-all relative">
+                        <span class="absolute top-6 right-6 text-xs text-brand-teal font-extrabold bg-slate-800 px-2.5 py-1 rounded-full">CODE 09</span>
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-4 text-lg">
+                                <i class="fa-solid fa-scroll"></i>
+                            </div>
+                            <h4 class="text-base font-bold text-white mb-1">현수막/X배너 디자인</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                행사의 시각 디자인 통일성을 높이는 전문 시안 구성 및 초안 제공
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-800 pt-3 flex items-center justify-between">
+                            <div>
+                                <div class="text-[10px] text-slate-500">단가 (1종 기준)</div>
+                                <div class="text-base font-black text-white">5만원~</div>
+                            </div>
+                            <button onclick="addToEstimate('CODE 09', '현수막 및 배너 디자인', 5, '종')" class="bg-brand-primary hover:bg-brand-accent text-white text-xs font-bold px-2 py-1.5 rounded-lg transition-colors">
+                                담기
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Service CODE 10 -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between card-glow transition-all relative">
+                        <span class="absolute top-6 right-6 text-xs text-brand-teal font-extrabold bg-slate-800 px-2.5 py-1 rounded-full">CODE 10</span>
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-400 mb-4 text-lg">
+                                <i class="fa-solid fa-gift"></i>
+                            </div>
+                            <h4 class="text-base font-bold text-white mb-1">판촉물/기념품 웰컴키트</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                                브랜드 친밀감 강화를 위한 커스텀 패키징 소싱 및 주문 제작
+                            </p>
+                        </div>
+                        <div class="border-t border-slate-800 pt-3 flex items-center justify-between">
+                            <div>
+                                <div class="text-[10px] text-slate-500">단가 (1개 기준)</div>
+                                <div class="text-base font-black text-white">가격 문의</div>
+                            </div>
+                            <button onclick="addToEstimate('CODE 10', '판촉물/기념품 세트', 0, '개')" class="bg-brand-primary hover:bg-brand-accent text-white text-xs font-bold px-2 py-1.5 rounded-lg transition-colors">
+                                담기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tax Guide Info -->
+            <p class="text-xs text-slate-500 text-center mt-8">
+                * 표기된 모든 금액은 VAT(부가세) 별도 기준이며, 프로젝트의 상세 조건(투입 인원, 거리, 교보재 품질 수준 등)에 의해 실견적 시 일부 변동될 수 있습니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Interactive Quote Calculator (견적 계산기) -->
+    <section class="py-20 bg-gradient-to-b from-slate-950 to-brand-deep relative" id="calculator">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+                <span class="text-brand-teal text-sm font-bold tracking-widest uppercase">Nexeed Quote Configurator</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">
+                    실시간 견적 시뮬레이터
+                </h2>
+                <p class="text-slate-400 text-sm">
+                    필요한 옵션을 담고 예상 소요 예산을 산출해보세요. 24시간 내에 전문 제안서로 보답해 드립니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Selected Items List -->
+                <div class="lg:col-span-8 bg-slate-900/80 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-brand-teal"></i> 선택한 세부 교육/지원 내역
+                        </h3>
+                        <button onclick="clearEstimate()" class="text-xs text-red-400 hover:text-red-300 transition-colors">
+                            <i class="fa-regular fa-trash-can mr-1"></i> 전체 초기화
+                        </button>
+                    </div>
+
+                    <!-- Items Container -->
+                    <div id="estimateItemsContainer" class="space-y-4">
+                        <!-- Dynamic items will be added here by JS -->
+                        <div id="emptyEstimateMsg" class="text-center py-12 text-slate-500 text-sm">
+                            <i class="fa-solid fa-cart-plus text-4xl mb-3 block text-slate-600"></i>
+                            상단의 서비스 단가 카드에서 <strong class="text-brand-teal">"담기"</strong> 단추를 클릭하여 가견적 항목을 추가해보세요.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Amount Card & Inquiry Action -->
+                <div class="lg:col-span-4 bg-slate-900 border-2 border-brand-primary/40 rounded-3xl p-6 relative overflow-hidden sticky top-24">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-primary/10 rounded-full filter blur-xl pointer-events-none"></div>
+                    
+                    <h3 class="text-md font-bold text-brand-teal uppercase tracking-wider mb-2">Estimated Budget Summary</h3>
+                    <div class="space-y-1">
+                        <span class="text-xs text-slate-400">예상 소요 금액 합계</span>
+                        <div class="text-3xl font-extrabold text-white flex items-baseline">
+                            <span id="totalCostSpan" class="text-brand-accent">0</span>&nbsp;만원
+                        </div>
+                        <span class="text-[10px] text-slate-500 block">전 제품 부가세(VAT) 별도 단가 기준</span>
+                    </div>
+
+                    <div class="mt-6 border-t border-slate-800 pt-6 space-y-3">
+                        <div class="flex justify-between text-xs text-slate-300">
+                            <span>총 선택 항목 수:</span>
+                            <span id="totalItemsCount" class="font-bold text-white">0개</span>
+                        </div>
+                        <div class="flex justify-between text-xs text-slate-300">
+                            <span>신속 가견적 발송:</span>
+                            <span class="font-bold text-brand-teal">24시간 내 발송 보장</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 space-y-3">
+                        <button onclick="exportToProposalForm()" class="w-full bg-gradient-to-r from-brand-primary to-brand-secondary text-white font-bold py-3.5 rounded-xl hover:shadow-lg transition-all text-sm block text-center">
+                            하단 상세 문의 폼에 자동 입력하기
+                        </button>
+                        <button onclick="copyEstimateToClipboard()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-100 font-medium py-2.5 rounded-xl transition-all text-xs flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-copy"></i> 가견적 내용 클립보드 복사
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Representative Experience Section (Public & Corporate Ref) -->
+    <section class="py-24 bg-slate-900/60 border-t border-slate-900 relative" id="portfolio">
+        <!-- Background decorative blur -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-brand-secondary/5 rounded-full filter blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <span class="text-brand-accent text-sm font-bold tracking-widest uppercase">Trusted Experience</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white">
+                    검증된 파트너십, 빛나는 결과물
+                </h2>
+                <p class="text-slate-400">
+                    공공기관의 엄격한 가이드라인부터 대기업의 역동적인 디지털 역량 교육까지 성공적으로 이끌어낸 이력을 직접 확인해 보세요.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Public Sector -->
+                <div class="bg-slate-950/80 border border-slate-800/80 rounded-3xl p-8 space-y-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-secondary/10 flex items-center justify-center text-brand-secondary text-xl">
+                            <i class="fa-solid fa-landmark"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-brand-teal font-extrabold uppercase">Reference Pool</span>
+                            <h3 class="text-xl font-bold text-white">공공 및 지자체 교육 대행</h3>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        공공기관 공무원교육원 및 일자리재단 등이 요구하는 철저한 성과 목표 달성 및 예산 규정에 최적화된 서류와 운영 지원 프로세스를 보장합니다.
+                    </p>
+
+                    <!-- Key Public Client Tags -->
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start space-x-2 text-sm text-slate-300">
+                            <span class="text-brand-teal mt-1">✔</span>
+                            <span><strong>경기도일자리재단</strong> - 신규 입사자 및 전문 역량 직무 향상</span>
+                        </div>
+                        <div class="flex items-start space-x-2 text-sm text-slate-300">
+                            <span class="text-brand-teal mt-1">✔</span>
+                            <span><strong>강원특별자치도 공무원교육원</strong> - 승진자·임직원 리더십 역량 및 힐링</span>
+                        </div>
+                        <div class="flex items-start space-x-2 text-sm text-slate-300">
+                            <span class="text-brand-teal mt-1">✔</span>
+                            <span><strong>파주시청·강서구청·인천 옹진군청</strong> - 주민참여 워크숍 및 정책 성과공유</span>
+                        </div>
+                    </div>
+
+                    <div class="text-xs text-slate-500 pt-4 border-t border-slate-900">
+                        * 이 외 전국 40여 개 이상의 기초·광역 지자체 및 공공기관 상시 출강 및 성과 보고 완료.
+                    </div>
+                </div>
+
+                <!-- Corporate Sector -->
+                <div class="bg-slate-950/80 border border-slate-800/80 rounded-3xl p-8 space-y-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-accent text-xl">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-brand-accent font-extrabold uppercase">Reference Pool</span>
+                            <h3 class="text-xl font-bold text-white">민간 기업 디지털 혁신 & 조직 활성화</h3>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        임직원의 자발적인 참여를 극대화하는 참여 액션 러닝 및 AI 기반의 디지털 전환 교육 프로그램으로 최신 비즈니스 스킬 향상을 이끕니다.
+                    </p>
+
+                    <!-- Key Corporate Client Tags -->
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start space-x-2 text-sm text-slate-300">
+                            <span class="text-brand-accent mt-1">✔</span>
+                            <span><strong>롯데카드</strong> - AI 활용 실무 및 뉴디지털 혁신 맞춤형 교육 설계</span>
+                        </div>
+                        <div class="flex items-start space-x-2 text-sm text-slate-300">
+                            <span class="text-brand-accent mt-1">✔</span>
+                            <span><strong>경신그룹</strong> - 차세대 리더십 선발 워크숍 및 역동적 팀 액티비티</span>
+                        </div>
+                        <div class="flex items-start space-x-2 text-sm text-slate-300">
+                            <span class="text-brand-accent mt-1">✔</span>
+                            <span><strong>금융·제조·의료·서비스 대형 파트너</strong> - 신임승진자 원스톱 캠프</span>
+                        </div>
+                    </div>
+
+                    <div class="text-xs text-slate-500 pt-4 border-t border-slate-900">
+                        * 교육-디자인-동영상을 결합한 원스톱 모델로 전체 유지 계약 고객 비율 88% 돌파.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us & RFP Submit -->
+    <section class="py-24 bg-brand-deep relative border-t border-slate-900" id="contact">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Left Details & Direct Contact Box -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <span class="text-brand-teal text-sm font-bold tracking-widest uppercase">Contact Nexeed</span>
+                        <h2 class="text-3xl sm:text-4xl font-black text-white leading-tight mt-2">
+                            성공적인 기업 교육,<br>
+                            넥시드가 함께합니다
+                        </h2>
+                        <p class="text-slate-300 text-sm mt-4 leading-relaxed font-light">
+                            프로젝트 개요와 대략적인 예산 단가를 남겨주시면 담당 대표 컨설턴트가 24시간 이내에 완벽한 맞춤형 제안서와 견적을 제시해드립니다.
+                        </p>
+                    </div>
+
+                    <!-- Direct Info Cards -->
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4 bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
+                            <div class="w-10 h-10 rounded-lg bg-brand-primary/20 flex items-center justify-center text-brand-accent">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-500">총괄 총책임자</div>
+                                <div class="text-sm font-bold text-white">김성민 대표</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4 bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
+                            <div class="w-10 h-10 rounded-lg bg-brand-secondary/20 flex items-center justify-center text-brand-secondary">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-500">다이렉트 소통 이메일</div>
+                                <div class="text-sm font-bold text-slate-200">ksm@nxd.co.kr</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4 bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
+                            <div class="w-10 h-10 rounded-lg bg-brand-teal/20 flex items-center justify-center text-brand-teal">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-slate-500">긴급 유선 상담</div>
+                                <div class="text-sm font-bold text-slate-200">010-9890-1707</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/40 p-5 rounded-2xl border border-slate-800 space-y-3">
+                        <div class="text-xs font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-brand-teal"></i> 신속 납기 및 안심 보장제
+                        </div>
+                        <p class="text-[11px] text-slate-400 leading-normal">
+                            넥시드컨설팅은 고객과의 약속 기한을 철저히 엄수합니다. 사전 시안 및 샘플을 무상 제공함으로써, 실제 납품되는 워크북이나 영상물의 품질 불일치 리스크를 혁신적으로 줄였습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right RFP Interactive Form -->
+                <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane text-brand-accent"></i> 맞춤 제안 및 실시간 견적 문의
+                    </h3>
+
+                    <form class="space-y-6" onsubmit="handleFormSubmit(event)">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 mb-2">담당자 이름/직급 *</label>
+                                <input type="text" id="formName" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="예: 홍길동 과장">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 mb-2">회사/기관명 *</label>
+                                <input type="text" id="formCompany" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="예: 길동전자 교육팀">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 mb-2">회신 이메일 *</label>
+                                <input type="email" id="formEmail" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="example@domain.com">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 mb-2">연락처 *</label>
+                                <input type="tel" id="formPhone" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="010-0000-0000">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-2">수강 예상 인원 / 교육 성격</label>
+                            <input type="text" id="formScope" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="예: 신입사원 30명 양성 / 중간관리자 직무 교육">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-2">선택한 가견적 명세 (자동 기입 지원)</label>
+                            <textarea id="formEstimateDetails" rows="5" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none font-mono text-xs leading-relaxed" placeholder="상단의 '실시간 견적 시뮬레이터'에서 자동입력 버튼을 누르면 이 영역에 견적 상세 내역이 자동으로 구성되어 추가됩니다."></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-2">추가 건의 및 상세 요청 사항</label>
+                            <textarea id="formMessage" rows="3" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="기타 원하시는 구체적인 일정, 특정 장소, 특별 요구사항 등을 편하게 입력해주세요."></textarea>
+                        </div>
+
+                        <div class="flex items-start">
+                            <input type="checkbox" id="formConsent" required class="mt-1 mr-2 rounded bg-slate-950 border-slate-800 text-brand-teal focus:ring-0">
+                            <span class="text-xs text-slate-400 leading-snug">개인정보 수집 및 상담 회신 목적의 이용 목적 동의 (필수)</span>
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-brand-primary to-brand-teal text-white font-bold py-4 rounded-xl shadow-lg transition-all hover:scale-[1.01] text-sm">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> 맞춤 제안서 및 실시간 견적 접수하기
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <!-- Left brand info -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-teal text-sm">
+                        <i class="fa-solid fa-cube"></i>
+                    </div>
+                    <div>
+                        <span class="text-base font-extrabold tracking-wider text-white">NEXEED CONSULTING</span>
+                        <span class="text-xs block text-slate-500 font-medium tracking-tight">넥시드컨설팅</span>
+                    </div>
+                </div>
+
+                <!-- Mid copyright -->
+                <div class="text-center text-xs text-slate-500">
+                    &copy; 2026 Nexeed Consulting. All Rights Reserved. General HRD One-Stop Solution.
+                </div>
+
+                <!-- Right contact numbers and info -->
+                <div class="flex space-x-4 text-xs">
+                    <a href="#about" class="hover:text-slate-300 transition-colors">회사소개</a>
+                    <a href="#services" class="hover:text-slate-300 transition-colors">사업영역</a>
+                    <a href="#calculator" class="hover:text-slate-300 transition-colors">견적계산</a>
+                    <a href="#contact" class="hover:text-slate-300 transition-colors">이메일 문의</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Customized Message Toast UI Element (Never use alert as per rules) -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 bg-slate-900 border-2 border-brand-teal text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center space-x-3 transition-all duration-300">
+        <div class="w-8 h-8 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center">
+            <i class="fa-solid fa-check text-base"></i>
+        </div>
+        <div>
+            <div class="text-xs font-bold text-brand-teal" id="toastTitle">알림</div>
+            <div class="text-sm text-slate-300 font-medium" id="toastMessage">처리되었습니다.</div>
+        </div>
+    </div>
+
+    <!-- Web App Application State Logic -->
+    <script>
+        // Interactive Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function toggleMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Header dynamic shadow on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-xl', 'bg-brand-deep/95');
+            } else {
+                header.classList.remove('shadow-xl', 'bg-brand-deep/95');
+            }
+        });
+
+        // Interactive Quote Estimator State
+        let selectedEstimateItems = [];
+
+        // Add service to simulated list
+        function addToEstimate(code, name, basePrice, unit) {
+            // Check if already exists, if so increase quantity
+            const existingIndex = selectedEstimateItems.findIndex(item => item.code === code);
+            
+            if (existingIndex > -1) {
+                selectedEstimateItems[existingIndex].quantity += 1;
+                showToast("수량 증가", `${name}의 수량이 1개 추가되었습니다.`);
+            } else {
+                selectedEstimateItems.push({
+                    code: code,
+                    name: name,
+                    basePrice: basePrice,
+                    unit: unit,
+                    quantity: 1
+                });
+                showToast("목록 추가", `${name} 항목이 모의 견적에 담겼습니다.`);
+            }
+            
+            renderEstimate();
+        }
+
+        // Remove item from simulated list
+        function removeItem(code) {
+            selectedEstimateItems = selectedEstimateItems.filter(item => item.code !== code);
+            showToast("목록 제거", `해당 서비스 코드가 견적에서 제외되었습니다.`);
+            renderEstimate();
+        }
+
+        // Update item quantity
+        function updateQuantity(code, val) {
+            const targetIndex = selectedEstimateItems.findIndex(item => item.code === code);
+            if (targetIndex > -1) {
+                const qty = parseInt(val) || 1;
+                selectedEstimateItems[targetIndex].quantity = qty < 1 ? 1 : qty;
+                renderEstimate();
+            }
+        }
+
+        // Reset all list items
+        function clearEstimate() {
+            selectedEstimateItems = [];
+            showToast("초기화 완료", "모든 견적 항목이 초기화되었습니다.");
+            renderEstimate();
+        }
+
+        // Render current state to UI
+        function renderEstimate() {
+            const container = document.getElementById('estimateItemsContainer');
+            const emptyMsg = document.getElementById('emptyEstimateMsg');
+            const totalCostSpan = document.getElementById('totalCostSpan');
+            const totalItemsCount = document.getElementById('totalItemsCount');
+
+            if (selectedEstimateItems.length === 0) {
+                emptyMsg.style.display = 'block';
+                // Hide dynamic item nodes
+                const nodes = container.querySelectorAll('.estimate-item-node');
+                nodes.forEach(n => n.remove());
+                totalCostSpan.textContent = '0';
+                totalItemsCount.textContent = '0개';
+                return;
+            }
+
+            emptyMsg.style.display = 'none';
+            // Clear prior dynamic nodes
+            const priorNodes = container.querySelectorAll('.estimate-item-node');
+            priorNodes.forEach(n => n.remove());
+
+            let totalCost = 0;
+            let totalItems = 0;
+
+            selectedEstimateItems.forEach(item => {
+                const itemTotal = item.basePrice * item.quantity;
+                totalCost += itemTotal;
+                totalItems += item.quantity;
+
+                // Build Element
+                const div = document.createElement('div');
+                div.className = 'estimate-item-node flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-950/60 border border-slate-800 p-4 rounded-xl gap-4';
+                
+                div.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <span class="text-xs text-brand-teal font-extrabold bg-slate-900 px-2 py-1 rounded border border-slate-800">${item.code}</span>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">${item.name}</h4>
+                            <p class="text-xs text-slate-400">기준 단가: ${item.basePrice === 0 ? '가격 문의' : item.basePrice + '만원/' + item.unit}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-4">
+                        <div class="flex items-center space-x-1">
+                            <span class="text-xs text-slate-500 mr-2">수량:</span>
+                            <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity('${item.code}', this.value)" class="w-16 bg-slate-900 border border-slate-800 rounded px-2 py-1 text-xs text-center text-white focus:outline-none focus:border-brand-primary">
+                            <span class="text-xs text-slate-400 ml-1">${item.unit}</span>
+                        </div>
+                        <div class="text-right min-w-[80px]">
+                            <span class="text-sm font-bold text-white">${item.basePrice === 0 ? '가격 문의' : itemTotal.toFixed(1) + '만원'}</span>
+                        </div>
+                        <button onclick="removeItem('${item.code}')" class="text-slate-500 hover:text-red-400 text-sm transition-colors p-1">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            totalCostSpan.textContent = totalCost.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 1});
+            totalItemsCount.textContent = `${totalItems}개`;
+        }
+
+        // Export estimate details to direct inquiry textarea
+        function exportToProposalForm() {
+            if (selectedEstimateItems.length === 0) {
+                showToast("입력 실패", "견적 시뮬레이터에 먼저 항목을 추가해주세요!");
+                return;
+            }
+
+            let text = `[넥시드컨설팅 온라인 모의 견적 명세]\n`;
+            let total = 0;
+            selectedEstimateItems.forEach(item => {
+                const subTotal = item.basePrice * item.quantity;
+                total += subTotal;
+                text += `- ${item.code} ${item.name}: ${item.quantity}${item.unit} (예상: ${item.basePrice === 0 ? '가격 협의' : subTotal + '만원'})\n`;
+            });
+            text += `\n총 예상 금액 합계: ${total} 만원 (VAT 별도)\n`;
+            text += `-------------------------------------------\n`;
+            text += `* 담당자가 면밀히 확인 후 정밀 세부 견적으로 회신 드리겠습니다.`;
+
+            document.getElementById('formEstimateDetails').value = text;
+            showToast("자동 입력 완료", "문의 폼에 견적 리스트가 채워졌습니다. 하단 문의 폼을 전송해주세요!");
+            
+            // Scroll to form nicely
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Copy estimate summary content to clipboard (Compatibility code safe for iframes)
+        function copyEstimateToClipboard() {
+            if (selectedEstimateItems.length === 0) {
+                showToast("복사 실패", "견적서에 추가된 내용이 없습니다.");
+                return;
+            }
+
+            let text = `[NEXEED CONSULTING 모의 견적 내역]\n`;
+            let total = 0;
+            selectedEstimateItems.forEach(item => {
+                const subTotal = item.basePrice * item.quantity;
+                total += subTotal;
+                text += `- ${item.code} | ${item.name}: ${item.quantity}${item.unit} (${item.basePrice === 0 ? '가격 문의' : subTotal + '만원'})\n`;
+            });
+            text += `\n총 추산 금액: ${total} 만원 (VAT 별도)\n전화문의: 010-9890-1707`;
+
+            // Use direct copy strategy for environment compliance
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            showToast("복사 완료", "가견적 텍스트가 클립보드에 복사되었습니다. 이메일이나 메신저에 붙여넣으세요!");
+        }
+
+        // Dynamic Beautiful Custom Toast System (Rule: Never use alert())
+        function showToast(title, message) {
+            const toast = document.getElementById('toastNotification');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
+
+            // Transition in
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            // Transition out
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        // Contact inquiry form submit simulation
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('formName').value;
+            const company = document.getElementById('formCompany').value;
+            const email = document.getElementById('formEmail').value;
+            const phone = document.getElementById('formPhone').value;
+            const scope = document.getElementById('formScope').value;
+            const estimate = document.getElementById('formEstimateDetails').value;
+            const msg = document.getElementById('formMessage').value;
+
+            // Simple validation
+            if (!name || !company || !email || !phone) {
+                showToast("접수 실패", "필수 항목(*)들을 기입해 주세요.");
+                return;
+            }
+
+            // Simulate sending to 김성민 대표 (ksm@nxd.co.kr)
+            console.log("RFP Submitted:", { name, company, email, phone, scope, estimate, msg });
+
+            // Create visual representation of success
+            showToast("문의 접수 완료", `${company} ${name}님의 소중한 제안 요정이 김성민 대표에게 전달되었습니다. 24시간 이내 연락 드리겠습니다.`);
+            
+            // Reset form input values
+            event.target.reset();
+            document.getElementById('formEstimateDetails').value = "";
+            clearEstimate();
+        }
+    </script>
+</body>
+</html>
