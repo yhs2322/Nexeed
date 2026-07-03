@@ -850,60 +850,60 @@
                     </div>
                 </div>
 
-                <!-- Right RFP Interactive Form -->
-                <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10">
-                    <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                        <i class="fa-solid fa-paper-plane text-brand-accent"></i> 맞춤 제안 및 실시간 견적 문의
-                    </h3>
+<!-- Right RFP Interactive Form (이름표 속성 'name' 추가 버전) -->
+<div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10">
+    <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+        <i class="fa-solid fa-paper-plane text-brand-accent"></i> 맞춤 제안 및 실시간 견적 문의
+    </h3>
 
-                    <form class="space-y-6" onsubmit="handleFormSubmit(event)">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold text-slate-400 mb-2">담당자 이름/직급 *</label>
-                                <input type="text" id="formName" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="예: 홍길동 과장">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-slate-400 mb-2">회사/기관명 *</label>
-                                <input type="text" id="formCompany" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="예: 길동전자 교육팀">
-                            </div>
-                        </div>
+    <form class="space-y-6" onsubmit="handleFormSubmit(event)">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-xs font-bold text-slate-400 mb-2">담당자 이름/직급 *</label>
+                <input type="text" id="formName" name="담당자_이름_직급" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="예: 홍길동 과장">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-400 mb-2">회사/기관명 *</label>
+                <input type="text" id="formCompany" name="회사_기관명" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="예: 길동전자 교육팀">
+            </div>
+        </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold text-slate-400 mb-2">회신 이메일 *</label>
-                                <input type="email" id="formEmail" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="example@domain.com">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-slate-400 mb-2">연락처 *</label>
-                                <input type="tel" id="formPhone" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="010-0000-0000">
-                            </div>
-                        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-xs font-bold text-slate-400 mb-2">회신 이메일 *</label>
+                <input type="email" id="formEmail" name="회신_이메일" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="example@domain.com">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-400 mb-2">연락처 *</label>
+                <input type="tel" id="formPhone" name="연락처" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="010-0000-0000">
+            </div>
+        </div>
 
-                        <div>
-                            <label class="block text-xs font-bold text-slate-400 mb-2">수강 예상 인원 / 교육 성격</label>
-                            <input type="text" id="formScope" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="예: 신입사원 30명 양성 / 중간관리자 직무 교육">
-                        </div>
+        <div>
+            <label class="block text-xs font-bold text-slate-400 mb-2">수강 예상 인원 / 교육 성격</label>
+            <input type="text" id="formScope" name="수강인원_및_교육성격" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="예: 신입사원 30명 양성 / 중간관리자 직무 교육">
+        </div>
 
-                        <div>
-                            <label class="block text-xs font-bold text-slate-400 mb-2">선택한 가견적 명세 (자동 기입 지원)</label>
-                            <textarea id="formEstimateDetails" rows="5" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none font-mono text-xs leading-relaxed" placeholder="상단의 '실시간 견적 시뮬레이터'에서 자동입력 버튼을 누르면 이 영역에 견적 상세 내역이 자동으로 구성되어 추가됩니다."></textarea>
-                        </div>
+        <div>
+            <label class="block text-xs font-bold text-slate-400 mb-2">선택한 가견적 명세 (자동 기입 지원)</label>
+            <textarea id="formEstimateDetails" name="선택한_가견적_명세" rows="5" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none font-mono text-xs leading-relaxed" placeholder="상단의 '실시간 견적 시뮬레이터'에서 자동입력 버튼을 누르면 이 영역에 견적 상세 내역이 자동으로 구성되어 추가됩니다."></textarea>
+        </div>
 
-                        <div>
-                            <label class="block text-xs font-bold text-slate-400 mb-2">추가 건의 및 상세 요청 사항</label>
-                            <textarea id="formMessage" rows="3" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="기타 원하시는 구체적인 일정, 특정 장소, 특별 요구사항 등을 편하게 입력해주세요."></textarea>
-                        </div>
+        <div>
+            <label class="block text-xs font-bold text-slate-400 mb-2">추가 건의 및 상세 요청 사항</label>
+            <textarea id="formMessage" name="추가_요청사항" rows="3" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-primary rounded-xl px-4 py-3 text-sm text-white focus:outline-none" placeholder="기타 원하시는 구체적인 일정, 특정 장소, 특별 요구사항 등을 편하게 입력해주세요."></textarea>
+        </div>
 
-                        <div class="flex items-start">
-                            <input type="checkbox" id="formConsent" required class="mt-1 mr-2 rounded bg-slate-950 border-slate-800 text-brand-teal focus:ring-0">
-                            <span class="text-xs text-slate-400 leading-snug">개인정보 수집 및 상담 회신 목적의 이용 목적 동의 (필수)</span>
-                        </div>
+        <div class="flex items-start">
+            <input type="checkbox" id="formConsent" required class="mt-1 mr-2 rounded bg-slate-950 border-slate-800 text-brand-teal focus:ring-0">
+            <span class="text-xs text-slate-400 leading-snug">개인정보 수집 및 상담 회신 목적의 이용 목적 동의 (필수)</span>
+        </div>
 
-                        <button type="submit" class="w-full bg-gradient-to-r from-brand-primary to-brand-teal text-white font-bold py-4 rounded-xl shadow-lg transition-all hover:scale-[1.01] text-sm">
-                            <i class="fa-solid fa-paper-plane mr-2"></i> 맞춤 제안서 및 실시간 견적 접수하기
-                        </button>
-                    </form>
-                </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-brand-primary to-brand-teal text-white font-bold py-4 rounded-xl shadow-lg transition-all hover:scale-[1.01] text-sm">
+            <i class="fa-solid fa-paper-plane mr-2"></i> 맞춤 제안서 및 실시간 견적 접수하기
+        </button>
+    </form>
+</div>                </div>
 
             </div>
         </div>
@@ -1158,35 +1158,53 @@
             }, 3500);
         }
 
-        // Contact inquiry form submit simulation
-        function handleFormSubmit(event) {
-            event.preventDefault();
+// Contact inquiry form submit - Real Email Delivery Version
+function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('formName').value;
+    const company = document.getElementById('formCompany').value;
+    const email = document.getElementById('formEmail').value;
+    const phone = document.getElementById('formPhone').value;
+    const scope = document.getElementById('formScope').value;
+    const estimate = document.getElementById('formEstimateDetails').value;
+    const msg = document.getElementById('formMessage').value;
+
+    // Simple validation
+    if (!name || !company || !email || !phone) {
+        showToast("접수 실패", "필수 항목(*)들을 기입해 주세요.");
+        return;
+    }
+
+    // FormSubmit 투명 전송을 위한 FormData 객체 생성
+    const formData = new FormData(event.target);
+
+    // [중요] ksm@nxd.co.kr 주소로 AJAX 전송 시작
+    fetch("https://formsubmit.co/ajax/ksm@nxd.co.kr", {
+        method: "POST",
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // 성공 시 화면에 토스트 알림 노출 및 폼 초기화
+            showToast("문의 접수 완료", `${company} ${name}님의 소중한 제안 요청이 김성민 대표에게 이메일로 전달되었습니다. 24시간 이내 연락 드리겠습니다.`);
             
-            const name = document.getElementById('formName').value;
-            const company = document.getElementById('formCompany').value;
-            const email = document.getElementById('formEmail').value;
-            const phone = document.getElementById('formPhone').value;
-            const scope = document.getElementById('formScope').value;
-            const estimate = document.getElementById('formEstimateDetails').value;
-            const msg = document.getElementById('formMessage').value;
-
-            // Simple validation
-            if (!name || !company || !email || !phone) {
-                showToast("접수 실패", "필수 항목(*)들을 기입해 주세요.");
-                return;
-            }
-
-            // Simulate sending to 김성민 대표 (ksm@nxd.co.kr)
-            console.log("RFP Submitted:", { name, company, email, phone, scope, estimate, msg });
-
-            // Create visual representation of success
-            showToast("문의 접수 완료", `${company} ${name}님의 소중한 제안 요정이 김성민 대표에게 전달되었습니다. 24시간 이내 연락 드리겠습니다.`);
-            
-            // Reset form input values
+            // 입력 폼 리셋 및 장바구니 비우기
             event.target.reset();
             document.getElementById('formEstimateDetails').value = "";
             clearEstimate();
+        } else {
+            showToast("접수 실패", "전송 시스템에 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.");
         }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        showToast("접수 에러", "네트워크 연결을 확인해 주세요.");
+    });
+}
     </script>
 </body>
 </html>
